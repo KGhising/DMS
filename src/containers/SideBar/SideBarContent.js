@@ -35,13 +35,13 @@ const SideBarContent = () => {
               name: 'sidebar.missionlist',
               icon: 'view-dashboard',
               type: 'item',
-              link: '/app/ims/missionlist'
+              link: '/app/missionplanner/missionlist'
             },
             {
               name: 'sidebar.missionplanner',
               icon: 'view-dashboard',
               type: 'item',
-              link: '/app/ims/missionplanner'
+              link: '/app/missionplanner/missionview'
             }
           ]
         },

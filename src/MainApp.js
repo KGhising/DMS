@@ -9,7 +9,7 @@ import App from './containers/App';
 
 export const store = configureStore();
 
-const MainApp = () =>
+const MainApp = () =>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>

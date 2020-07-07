@@ -1,3 +1,2 @@
-export * from './Setting';
-export * from './Auth';
-export * from './Common';
+export * from '../store/actions/Setting';
+export * from '../store/actions/Common';

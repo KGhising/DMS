@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar'
 import {useDispatch} from 'react-redux'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {userSignOut} from 'actions/Auth';
+import {logout} from '../../store/actions/auth';
 import IntlMessages from 'util/IntlMessages';
 
 const UserInfo = () => {
@@ -30,8 +30,8 @@ const UserInfo = () => {
         className="user-avatar "
       />
       <div className="user-detail">
-          <h4 className="user-name d-flex" onClick={handleClick}><span className='text-truncate'>Robert Johnson</span> <i
-          className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
+          <h4 className="user-name d-flex"onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
+          {/* <i className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/> */}
         </h4>
       </div>
       <Menu className="user-info"
@@ -57,7 +57,7 @@ const UserInfo = () => {
         </MenuItem>
         <MenuItem onClick={() => {
           handleRequestClose();
-          dispatch(userSignOut());
+          dispatch(logout());
         }}>
           <i className="zmdi zmdi-sign-in zmdi-hc-fw mr-2"/>
 

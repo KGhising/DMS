@@ -11,7 +11,7 @@ import { COLLAPSED_DRAWER, FIXED_DRAWER } from "constants/ActionTypes";
 import MailNotification from "../../../../components/MailNotification";
 import AppNotification from "../../../../components/AppNotification";
 import CardHeader from "components/dashboard/Common/CardHeader/index";
-import { switchLanguage, toggleCollapsedNav } from "actions/Setting";
+import { switchLanguage, toggleCollapsedNav } from "store/actions/Setting";
 import IntlMessages from "util/IntlMessages";
 import LanguageSwitcher from "components/LanguageSwitcher/index";
 

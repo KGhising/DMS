@@ -1,12 +1,20 @@
 import React from 'react';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import asyncComponent from '../../util/asyncComponent';
 
-const Routes = ({match}) =>
+const Routes = ({ match }) =>
+
   <Switch>
-    <Route path={`${match.url}/sample-page`}
-           component={asyncComponent(() => import('./SamplePage'))}/>
-    {/*<Route component={asyncComponent(() => import("app/routes/extraPages/routes/404"))}/>*/}
+    <Route path={`${match.url}/weather`} component={asyncComponent(() => import('./Weather/Weather'))} />
+    <Route path={`${match.url}/ims`} component={asyncComponent(() => import('./Ims/Ims'))}  />
+    {/* <Route path={`${match.url}/dms`} component={DMS} /> */}
+    <Route path={`${match.url}/events`} component={asyncComponent(() => import('./EventLogs/EventLogs'))}/>
+    {/* <Route path={`${match.url}/issue`} component={Issue} /> */}
+    <Route path={`${match.url}/missionplanner`} component={asyncComponent(() => import('./MissionPlanner/MissionPlanner'))} />
+    {/* <Route path={`${match.url}/dronecontrol`} component={DroneControl} /> */}
+    <Route path={`${match.url}/users`} component={asyncComponent(() => import('./Users/Users'))} />
+    <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./Dashboard/Dashboard'))}  />
+    <Redirect from={`/app`} to={`${match.url}/dashboard`} />
   </Switch>;
 
 
