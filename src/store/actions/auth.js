@@ -84,7 +84,7 @@ const sendRefreshToken = (refreshToken) => {
     }
 }
 
-export const auth = (email, password) => {
+export const signIn = (email, password) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {

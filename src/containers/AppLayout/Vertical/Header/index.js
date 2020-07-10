@@ -62,7 +62,7 @@ const Index =(props)=> {
             <span className="menu-icon"/>
           </IconButton>
 
-          <Link className="app-logo mr-2 d-none d-sm-block">
+          <Link to='/app' className="app-logo mr-2 d-none d-sm-block" >
             <img src={require("assets/images/logo.jpg")} alt="Jambo" title="Jambo"/>
           </Link>
           {/* <div style={{minWidth: '100px', maxWidth: '80%'}}>
