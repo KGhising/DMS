@@ -42,50 +42,49 @@ const App = (props) => {
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    if (initURL === '') {
-      // dispatch(setInitUrl(props.history.location.pathname));
-    }
-    const params = new URLSearchParams(props.location.search);
-    if (params.has("theme-name")) {
-      dispatch(setThemeColor(params.get('theme-name')));
-    }
-    if (params.has("dark-theme")) {
-      dispatch(setDarkTheme());
-    }
+    console.log(location.pathname);
+    // if (initURL === '') {
+    //   dispatch(authActions.setInitURL(props.history.location.pathname));
+    // }
 
     const tryLogin = async () => {
-      const token = await localStorage.getItem('token');
+  
       console.log("Start up screen", token);
-      if (!token) {
+      if (token === undefined || token === null) {
+        dispatch(authActions.setInitURL('/signin'));
+        // return (<Redirect to={'/signin'} />)
         setRedirectTo('/signin');
       } else {
         const expiryDate = await localStorage.getItem('expirationDate');
         const expirationDate = new Date(expiryDate);
         if (expirationDate <= new Date() || !token) {
+          dispatch(authActions.setInitURL('/signin'));
           setRedirectTo('/signin');
+          // return (<Redirect to={'/signin'} />)
         } else {
           const expiresIn = expirationDate.getTime() - new Date().getTime();
-          dispatch(authActions.authenticate(token, expiresIn / 1000));
+          const userId = await localStorage.getItem('userId');
+          // dispatch(authActions.authenticate(token, userId, expiresIn / 1000));
+          dispatch(authActions.setInitURL('/app'));
           setRedirectTo('/app');
+          return (<Redirect to={'/app'} />);
         }
       }
     };
     tryLogin();
-  }, [dispatch, initURL, props.history.location.pathname, props.location.search]);
+  }, []);
 
   let applyTheme = createMuiTheme(indigoTheme);
 
-  if (location.pathname === '/') {
-    if (token === null) {
-      return (<Redirect to={'/signin'} />);
-    } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-      return (<Redirect to={'/app'} />);
+  if(location.pathname === '/') {
+    if(token === null || token === undefined) {
+      return <Redirect to='/signin' />
     } else {
-      return (<Redirect to={initURL} />);
+      return <Redirect to='/app' /> 
     }
   }
   const currentAppLocale = AppLocale[locale.locale];
-  console.log("in indexf file")
+  console.log("in indexf file", match.url)
   return (
     <ThemeProvider theme={applyTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>

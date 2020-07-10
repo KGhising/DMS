@@ -57,6 +57,7 @@ class Auth extends Component {
         }
 
         let authRedirect = null;
+        console.log("SIgnIn", this.props.isAuthenticated, this.props.token )
         if (this.props.isAuthenticated) {
             authRedirect = <Redirect to='/app' />
         }
@@ -170,6 +171,7 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
+        token: state.auth.token,
         authRedirectPath: state.auth.authRedirectPath
     };
 };

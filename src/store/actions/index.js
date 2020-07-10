@@ -6,7 +6,8 @@ export {
     authCheckState,
     resetPassword,
     setAuthRedirectPath,
-    logout
+    logout,
+    setInitURL
     
 } from './auth';
 
