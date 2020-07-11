@@ -50,7 +50,7 @@ const App = (props) => {
     const tryLogin = async () => {
   
       console.log("Start up screen", token);
-      if (token === undefined || token === null) {
+      if (token === undefined || token === null || token === "undefined") {
         dispatch(authActions.setInitURL('/signin'));
         // return (<Redirect to={'/signin'} />)
         setRedirectTo('/signin');
@@ -67,7 +67,7 @@ const App = (props) => {
           // dispatch(authActions.authenticate(token, userId, expiresIn / 1000));
           dispatch(authActions.setInitURL('/app'));
           setRedirectTo('/app');
-          return (<Redirect to={'/app'} />);
+          // return (<Redirect to={'/app'} />);
         }
       }
     };
@@ -77,7 +77,7 @@ const App = (props) => {
   let applyTheme = createMuiTheme(indigoTheme);
 
   if(location.pathname === '/') {
-    if(token === null || token === undefined) {
+    if(token === null || token === undefined || token === "undefined") {
       return <Redirect to='/signin' />
     } else {
       return <Redirect to='/app' /> 

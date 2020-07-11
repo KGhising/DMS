@@ -99,7 +99,7 @@ export const signIn = (email, password) => {
                 response = response.authResponse;
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
-                // console.log(response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
+                console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.localId);
@@ -108,7 +108,7 @@ export const signIn = (email, password) => {
                 dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
-                // console.log(err);
+                console.log(err);
                 dispatch(authFail(err));
             });
     };

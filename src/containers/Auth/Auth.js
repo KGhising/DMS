@@ -61,7 +61,7 @@ const SignIn = (props) => {
     const classes = useStyles();
 
     useEffect(() => {
-        if (token !== null) {
+        if (token !== null && token !== undefined && token !== "undefined") {
             props.history.push('/');
         }
     }, [token]);
@@ -112,7 +112,8 @@ const SignIn = (props) => {
                             label="Remember me"
                         />
                         <Button
-                            onClick={() => {
+                            onClick={(event) => {
+                                event.preventDefault();
                                 dispatch(signIn({ email, password }))
                             }}
                             type="submit"
