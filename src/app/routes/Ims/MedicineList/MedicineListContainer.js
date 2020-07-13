@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Hidden from '@material-ui/core/Hidden';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -24,23 +25,27 @@ const useStyles = makeStyles({
 const MedicineListContainer = props => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className="app-wrapper">
             <Grid container xs={12} >
                 <Grid item xs={1} justify="center" alignItems="flex-end" container>
-                <Link to='/app/ims/categories' style={{textDecoration:'none', color: 'white'}}>
-                    <IconButton type="submit" aria-label="search">
-                        <ArrowBackIcon />
-                    </IconButton>
+                    <Link to='/app/ims/categories' style={{ textDecoration: 'none', color: 'white' }}>
+                        <IconButton type="submit" aria-label="search">
+                            <ArrowBackIcon />
+                        </IconButton>
                     </Link>
                 </Grid>
-                <Grid item xs={3} justify="center" alignItems="center" container>
-                    <Typography variant="h5">{props.location.aboutProps?props.location.aboutProps.name: "Medicines"}</Typography>
+                <Grid item lg={3} md={3} sm={3} xs={5} justify="center" alignItems="center" container>
+                    <Typography variant="h5">{props.location.aboutProps ? props.location.aboutProps.name : "Medicines"}</Typography>
                 </Grid>
-                <Grid item xs={6} justify="flex-end" container>
-                    <Search />
+                <Grid item lg={6} md={5} sm={5} xs={1} justify="flex-end" container>
+                    <Hidden xsDown>
+                        <Search />
+                    </Hidden>
                 </Grid>
-                <Grid item xs={2} justify="center" container>
-                    <Button variant="contained" color="primary">Add Item</Button>
+                <Grid item lg={2} md={3} sm={3} xs={5} justify="center" container>
+                    {/* <Hidden xsDown> */}
+                        <Button variant="contained" color="primary">Add Item</Button>
+                    {/* </Hidden> */}
                 </Grid>
 
             </Grid>
