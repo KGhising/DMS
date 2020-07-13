@@ -39,7 +39,7 @@ const WeatherItem = props => {
   }
   return (
     <Card className={classes.root}>
-      <Grid container xs={12} >
+      <Grid container >
         <Grid item container xs={8}>
           <CardContent className={classes.content}>
             <Typography component="h6">

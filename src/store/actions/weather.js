@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as axioss from '../../response/falseFetch';
 import * as actionTypes from './actionTypes';
 
 const getWeatherByPlace = async (p) => {
@@ -64,19 +65,26 @@ const getWeatherByLatLon = async (lat, lon) => {
 export const getWeather = () => {
     return async (dispatch, getState) => {
         // const places = getState().dashboard.places.data;
-        const places = ["Dharan"];
+        // const places = ["Dharan"];
         // console.log(places);
         const weathers = [];
-        dispatch(getWeatherStart());
-        Promise.all(places.map(async (place) => {
-            return getWeatherByPlace(place)
-            // console.log("Weather",weather);
-            // weathers.push(weather);
-        })).then(res => {
-            console.log(res);
-            dispatch(setWeather(res));
-            console.log("Done");
-        });  
+        const url = './places.js';
+        axioss.get(url).then(response => {
+            dispatch(setPlaces(response.placesResponse));
+            const places = response.placesResponse.data;
+            // console.log(places);
+            dispatch(getWeatherStart());
+            Promise.all(places.map(async (place) => {
+                return getWeatherByPlace(place)
+                // console.log("Weather",weather);
+                // weathers.push(weather);
+            })).then(res => {
+                console.log(res);
+                dispatch(setWeather(res));
+                console.log("Done");
+            });
+        })
+
     }
     // console.log(res);
 }
@@ -99,3 +107,9 @@ export const setWeather = (data) => {
 //     }
 // }
 
+export const setPlaces = (places) => {
+    return {
+        type: actionTypes.SET_PLACES,
+        places: places
+    }
+}

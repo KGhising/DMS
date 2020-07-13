@@ -5,6 +5,8 @@ import ImsCard from '../../../../components/imsCard/ImsCard';
 import types from '../../../../JSONFiles/medicineTypes';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+// import ProductGridItem from 'components/eCommerce/ProductGridItem'
+
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -21,26 +23,28 @@ const Ims = () => {
     const classes = useStyles();
     // console.log(types);
     return (
-        <Grid container className={classes.root} spacing={2}>
-            <Grid container item xs={12}>
-                <Grid xs={10}>
-                </Grid>
-                <Grid container justify="center" xs={2}>
-                    <Link className={classes.button} to='/app/ims/orders/lists' style={{ textDecoration: 'none', color: 'white' }}>
-                        <Button variant="contained" color='secondary' >Orders </Button>
-                    </Link>
-                </Grid>
-            </Grid>
-            <Grid item xs={12} className={classes.type}>
-                <Grid container spacing={0}>
-                    {types.map(medicineType => {
-                        return <Grid key={medicineType.ImsCard} item lg={3} sm={6}>
-                            <ImsCard name={medicineType.name} image={medicineType.image} />
-                        </Grid>
-                    })}
-                </Grid>
-            </Grid>
-        </Grid>
+        // <Grid container className={classes.root} spacing={2}>
+        //     <Grid container item xs={12}>
+        //         <Grid xs={10}>
+        //         </Grid>
+        //         <Grid container justify="center" xs={2}>
+        //             <Link className={classes.button} to='/app/ims/orders/lists' style={{ textDecoration: 'none', color: 'white' }}>
+        //                 <Button variant="contained" color='secondary' >Orders </Button>
+        //             </Link>
+        //         </Grid>
+        //     </Grid>
+            // {/* <Grid item xs={12} className={classes.type}> */}
+            <div className="app-wrapper">
+                <div className="animated slideInUpTiny animation-duration-3">
+                    <div className="row products-grid-row">
+                        {types.map((type, index) => (
+                            <ImsCard key={index} type={type} />
+                        ))}
+                    </div>
+                </div>
+                </div>
+            // {/* </Grid> */}
+        // </Grid>
     );
 };
 
