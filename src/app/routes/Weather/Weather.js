@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/styles';
 import WeatherItem from './WeatherItem';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../store/actions/weather';
-import * as authActions from '../../../store/actions/auth';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -14,6 +15,12 @@ const useStyles = makeStyles({
     },
     type: {
         marginTop: '20px'
+    },
+    progress: {
+        
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
@@ -22,7 +29,6 @@ const Weather = () => {
     const classes = useStyles();
     
     const weather = useSelector(({ weather }) => weather.weatherData);
-    // const [places, setPlaces] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -54,16 +60,6 @@ const Weather = () => {
         dispatch(actions.getWeather());
         
     },[dispatch]);
-
-    // useEffect(() => {
-    //     console.log("Weather",weather);
-    //     const place = [];
-    //     place.push(weather);
-    //     place.push(weather);
-    //     place.push(weather);
-    //     place.push(weather);
-    //     setPlaces(place);
-    // },[weather]);
     if (error) {
         return <p>Error</p>
         // <View style={styles.centered}>
@@ -73,11 +69,11 @@ const Weather = () => {
     }
 
     if (isLoading) {
-        return  <p>isLoading</p>
+        return  <div className={classes.progress}><LinearProgress /></div>
     }
 
     if ( weather.length === 0) {
-        return <p>Weather length 0</p>
+        return <div className={classes.progress}><LinearProgress /></div>
     }
 
     return (
@@ -85,10 +81,10 @@ const Weather = () => {
             <Grid item xs={12} className={classes.type}>
                 <Grid container spacing={2}>
                     {weather.map(place => {
-                        return <Grid key={place.place} item lg={6} sm={6}>
+                        return <Grid key={place.place} item lg={4} md={4} sm={4} xs={6}>
                             <WeatherItem place={place.place} temp={place.temp} min={place.temp_min} 
                             max={place.temp_max} wind={place.wind_speed} humidity={place.humidity} 
-                            description={place.main} image={place.icon}
+                            description={place.main} iconId={place.iconId}
                             // date={place.date}
                             />
                         </Grid>

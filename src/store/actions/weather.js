@@ -14,7 +14,7 @@ const getWeatherByPlace = async (p) => {
             const res = {
                 place: place,
                 main: response.data.weather[0].description,
-                icon: response.data.weather[0].icon,
+                iconId: response.data.weather[0].id,
                 temp: (response.data.main.temp - 273).toFixed(2),
                 temp_min: (response.data.main.temp_min - 273).toFixed(2),
                 temp_max: (response.data.main.temp_max - 273).toFixed(2),
@@ -44,7 +44,7 @@ const getWeatherByLatLon = async (lat, lon) => {
                 lat: lat,
                 lon: lon,
                 main: response.data.weather[0].description,
-                icon: response.data.weather[0].icon,
+                iconId: response.data.weather[0].id,
                 temp: (response.data.main.temp - 273).toFixed(2),
                 temp_min: (response.data.main.temp_min - 273).toFixed(2),
                 temp_max: (response.data.main.temp_max - 273).toFixed(2),
@@ -63,47 +63,20 @@ const getWeatherByLatLon = async (lat, lon) => {
 
 export const getWeather = () => {
     return async (dispatch, getState) => {
-        const placess = getState().dashboard.places.data;
-        const places = ["Dharan", "Biratnagar"];
+        // const places = getState().dashboard.places.data;
+        const places = ["Dharan"];
         // console.log(places);
         const weathers = [];
         dispatch(getWeatherStart());
-        // const res = (getWeatherByLatLon(26.81, 87.28));
-        // weathers = await Promise.map(places, async (place) => {
-        //     return await getWeatherByPlace(place); 
-        // }, {concurrency: 2});
-        // let weather = await getWeatherByPlace("Dharan"); 
-        // weathers.push(weather);
-        // weathers = places.map(async place => {
-        //     // console.log(place);
-        //     return  await getWeatherByPlace(place);
-
-        // });
-        // Promise.all([
-        //     fetch("url1"),
-        //     fetch("url2"),
-        //     fetch("url3"),
-        //   ]).then(([res1, res2, res3]) => {
-        //     this.setState({status: "fetched"})
-        //   })
-        // weathers = await Promise.all(places.map(async (place) => {
-        //     let weather = await getWeatherByPlace(place)
-        //     console.log("Weather",weather);
-        //     weathers.push(weather);
-        // }));
-        // for (let i in arr){
-        //     await callAsynchronousOperation(i);
-        //     resultingArr.push(i + 1)
-        //   }
-        // const unresolvedPromises = places.map(place => getWeatherByPlace(place));
-        // weathers = await Promise.all(unresolvedPromises);
-        // for (let place in places) {
-        //     let weather = await getWeatherByPlace(place);
-        //     weathers.push(weather);
-        // }
-        console.log(weathers);
-        dispatch(setWeather(weathers));
-        console.log("Done");
+        Promise.all(places.map(async (place) => {
+            return getWeatherByPlace(place)
+            // console.log("Weather",weather);
+            // weathers.push(weather);
+        })).then(res => {
+            console.log(res);
+            dispatch(setWeather(res));
+            console.log("Done");
+        });  
     }
     // console.log(res);
 }
