@@ -6,3 +6,4 @@ export const authResponse = {
         refreshToken: 'refreshToken'
     }
 }
+

@@ -7,6 +7,7 @@ import authReducer from './auth';
 import dashboard from './dashboard';
 import alert from './alert';
 import users from './users';
+import weather from './weather';
 
 
 export default (history) => combineReducers({
@@ -16,5 +17,6 @@ export default (history) => combineReducers({
   auth: authReducer,
   dashboard: dashboard,
   alert: alert,
-  users: users
+  users: users,
+  weather: weather
 });

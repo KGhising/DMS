@@ -79,13 +79,13 @@ const SideBarContent = () => {
         {
           name: 'sidebar.issues',
           type: 'item',
-          icon: 'view-dashboard',
+          icon: 'store',
           link: '/app/issues'
         },
         {
           name: 'sidebar.users',
           type: 'item',
-          icon: 'view-dashboard',
+          icon: 'view-store',
           link: '/app/users'
         }
 

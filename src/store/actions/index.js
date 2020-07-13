@@ -1,6 +1,6 @@
 export {
     authStart,
-    auth,
+    signIn,
     authSuccess,
     authFail,
     authCheckState,
@@ -13,3 +13,4 @@ export {
 
 export * from './Setting';
 export * from './Common';
+export * from './weather';

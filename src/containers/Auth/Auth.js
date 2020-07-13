@@ -20,6 +20,7 @@ import IntlMessages from '../../util/IntlMessages';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { NotificationContainer, NotificationManager } from "react-notifications";
+
 const SignIn = (props) => {
 
     const useStyles = makeStyles((theme) => ({
@@ -142,7 +143,7 @@ const SignIn = (props) => {
 }
 
 
-
+export default SignIn;
 
 
 // const mapStateToProps = state => {
@@ -162,5 +163,3 @@ const SignIn = (props) => {
 //         resetPassword: () => dispatch(actions.resetPassword())
 //     };
 // };
-
-export default SignIn;

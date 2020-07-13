@@ -1,18 +1,20 @@
 import React, { Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import classes from './Dashboard.module.css'
+import {useDispatch} from 'react-redux';
 import { connect } from 'react-redux'
 import {getCurrentCards} from '../../../store/actions/dashboard'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Card from '../../../components/Card/Card'
 import Chart from '../../../components/Chart/Chart'
-
+import * as actions from '../../../store/actions/dashboard'
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
 
+    const dispatch = useDispatch();
     useEffect(() => {
         getCurrentCards();
-
+        dispatch(actions.getPlaces());
     }, [])
     
     const card = Object.keys(cards).map((keyName, i) => {

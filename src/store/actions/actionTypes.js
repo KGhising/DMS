@@ -18,5 +18,10 @@ export const GET_USERS= 'GET_USERS';
 export const USER_ERROR= 'USER_ERROR';
 export const SET_INIT_URL = 'SET_INIT_URL';
 
+export const GET_WEATHER_DATA = 'GET_WEATHER_DATA';
+export const SET_WEATHER_DATA = 'SET_WEATHER_DATA';
+export const GET_WEATHER_DATA_START = 'GET_WEATHER_DATA_START';
+export const SET_PLACES = 'SET_PLACES';
+
 
 
