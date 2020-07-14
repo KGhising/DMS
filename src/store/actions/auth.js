@@ -16,6 +16,13 @@ export const authSuccess = (token, userId) => {
     };
 };
 
+export const setInitURL = (url) => {
+    return {
+        type: actionTypes.SET_INIT_URL,
+        url: url
+    }
+}
+
 export const authFail = (error) => {
     return {
         type: actionTypes.AUTH_FAIL,
@@ -23,12 +30,13 @@ export const authFail = (error) => {
     };
 };
 
-export const authenticate = (token, expiryTime) => {
+export const authenticate = (token, userId, expiryTime) => {
     return dispatch => {
         // 
         dispatch({
             type: actionTypes.AUTHENTICATE,
-            token: token
+            token: token,
+            userId: userId
         });
         dispatch(checkAuthTimeout(expiryTime));
     }

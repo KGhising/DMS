@@ -16,6 +16,7 @@ export const CLEAR_USER2 = 'CLEAR_USER2';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USERS= 'GET_USERS';
 export const USER_ERROR= 'USER_ERROR';
+export const SET_INIT_URL = 'SET_INIT_URL';
 
 
 
