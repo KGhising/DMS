@@ -4,8 +4,10 @@ import classes from './Dashboard.module.css'
 import { connect } from 'react-redux'
 import {getCurrentCards} from '../../../store/actions/dashboard'
 import Spinner from '../../../components/UI/Spinner/Spinner'
-import Card from '../../../components/Card/Card'
 import Chart from '../../../components/Chart/Chart'
+import IconWithTextCard from '../../../components/statusCard/IconWithTextCard'
+import { detailCards } from '../../../components/statusCard/data'
+import Grid from '@material-ui/core/Grid';
 
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
@@ -14,10 +16,6 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
         getCurrentCards();
 
     }, [])
-    
-    const card = Object.keys(cards).map((keyName, i) => {
-        return <Card key = {i} data = {cards[keyName]} name= {keyName} />
-    }) 
  
     return (
         <div className= {classes.Dashboard}>
@@ -27,9 +25,16 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
                     ? <Spinner />
 
                     : <Fragment>
-                        <div className={classes.Cards}>
-                            {card}
+                        <div className="m-5">
+                            <Grid container spacing={5} justify="center">
+                                {detailCards.map((data, index) => 
+                                <Grid item lg={3} md={3} xs={6} key={index}>
+                                    <IconWithTextCard data={data}/>
+                                </Grid>)
+                                }
+                            </Grid>
                         </div>
+
                         <div className = {classes.Charts}>
                             
                             <div className={classes.MainChart}>
