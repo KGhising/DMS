@@ -6,7 +6,6 @@ import {getCurrentCards} from '../../../store/actions/dashboard'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Chart from '../../../components/Chart/Chart'
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard'
-import { detailCards } from '../../../components/statusCard/data'
 import Grid from '@material-ui/core/Grid';
 
 
@@ -16,7 +15,15 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
         getCurrentCards();
 
     }, [])
- 
+
+    const card = Object.keys(cards).map((data, index) => {
+        return (
+            <Grid item lg={3} md={3} xs={6} key={index}>
+                <IconWithTextCard data={cards[data]} />
+            </Grid>
+        )
+    })
+
     return (
         <div className= {classes.Dashboard}>
             <div className={classes.Content}>
@@ -27,11 +34,7 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
                     : <Fragment>
                         <div className="m-5">
                             <Grid container spacing={5} justify="center">
-                                {detailCards.map((data, index) => 
-                                <Grid item lg={3} md={3} xs={6} key={index}>
-                                    <IconWithTextCard data={data}/>
-                                </Grid>)
-                                }
+                                {card}
                             </Grid>
                         </div>
 

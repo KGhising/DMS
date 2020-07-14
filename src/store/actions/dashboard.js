@@ -7,13 +7,29 @@ export const getCurrentCards = () => async dispatch => {
         // const res = await axios.get('api/dashboard');
         const res = {
             data: {
-                cards: {
-                    totalDrones: 4,
-                    flyingDrones: 3,
-                    totalDeliveries: 5,
-                    totalHealthPosts: 10,
-                    newRequest: 5
-                },
+                cards: [
+                    {
+                      cardColor: 'primary',
+                      icon: 'airplane',
+                      title: '09',
+                      subTitle: 'Drones'
+                    }, {
+                      cardColor: 'secondary',   
+                      icon: 'flight-takeoff',
+                      title: '457',
+                      subTitle: 'Flying drone'
+                    }, {
+                      cardColor: 'info',
+                      icon: 'assignment-check',
+                      title: '247',
+                      subTitle: 'Delivery made'
+                    }, {
+                      cardColor: 'warning',
+                      icon: 'hospital-alt',
+                      title: '09',
+                      subTitle: 'Health post'
+                    },
+                  ],
                 graphs: {
                     cdc: [{ x: 10, y: 20 }, { x: 15, y: 10 }, { x: 20, y: 15 }],
                     rhps: [
